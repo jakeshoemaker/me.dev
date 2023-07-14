@@ -11,5 +11,5 @@ var (
 )
 
 func GenerateTemplates() (*template.Template, error) {
-    return template.ParseFS(templates, "templates/*.gohtml")
+    return template.ParseFS(templates, "templates/*.html")
 }
