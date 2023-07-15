@@ -4,4 +4,8 @@
 
 @tailwind utilities;
 
-
+@layer base {
+    html {
+        font-family: Open Sans,
+    }
+}
