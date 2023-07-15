@@ -4,6 +4,9 @@ module.exports = {
       './server/views/templates/*.html',
   ],
   theme: {
+    fontFamily: {
+        'sans': ['Open Sans'],
+    },
     extend: {},
   },
   plugins: [
