@@ -1,0 +1,24 @@
+{
+  "name": "me.dev",
+  "version": "0.6.9",
+  "description": "my personal site",
+  "main": "index.js",
+  "scripts": {
+    "watch": "npx tailwindcss -i ./main.css -o ./server/handlers/static/styles.css --watch",
+    "build": "npx tailwindcss build main.css -o server/handlers/static/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakeshoemaker/me.dev.git"
+  },
+  "author": "me",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jakeshoemaker/me.dev/issues"
+  },
+  "homepage": "https://github.com/jakeshoemaker/me.dev#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.14",
+    "tailwindcss": "^3.3.3"
+  }
+}
