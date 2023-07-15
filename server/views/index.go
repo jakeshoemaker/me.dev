@@ -12,8 +12,8 @@ type IndexView struct {
 }
 
 type Self struct {
-    name string
-    age int16
+    Name string
+    Age int16
 }
 
 func NewIndexView(templ *template.Template) *IndexView {
@@ -22,8 +22,8 @@ func NewIndexView(templ *template.Template) *IndexView {
 
 func (t *IndexView) Index(writer http.ResponseWriter) {
     me := Self {
-        name: "urmom",
-        age: 6,
+        Name: "urmom",
+        Age: 6,
     }
     if err := t.templ.ExecuteTemplate(writer, "index", me); err != nil {
         http.Error(writer, err.Error(), http.StatusInternalServerError)
