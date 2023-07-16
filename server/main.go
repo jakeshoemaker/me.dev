@@ -16,7 +16,9 @@ func main() {
         log.Fatal(err)
     }
 
-    handler, err := handlers.CreateHandler(views.NewIndexView(templates))
+    handler, err := handlers.CreateHandler(
+        views.NewIndexView(templates), 
+        views.NewThemeView(templates))
     if err != nil {
         log.Fatal(err)
     }

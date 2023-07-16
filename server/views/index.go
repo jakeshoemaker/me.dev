@@ -9,11 +9,11 @@ import (
 
 type IndexView struct {
     templ *template.Template
+
 }
 
-type Self struct {
-    Name string
-    Age int16
+type Site struct {
+    DarkMode bool
 }
 
 func NewIndexView(templ *template.Template) *IndexView {
@@ -21,11 +21,10 @@ func NewIndexView(templ *template.Template) *IndexView {
 }
 
 func (t *IndexView) Index(writer http.ResponseWriter) {
-    me := Self {
-        Name: "urmom",
-        Age: 6,
+    site := Site {
+        DarkMode: true,
     }
-    if err := t.templ.ExecuteTemplate(writer, "index", me); err != nil {
+    if err := t.templ.ExecuteTemplate(writer, "index", site); err != nil {
         http.Error(writer, err.Error(), http.StatusInternalServerError)
     }
 }
