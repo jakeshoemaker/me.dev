@@ -11,12 +11,12 @@
     <script src="/static/theme.js"></script>
     <script>
         const html = document.getElementById("root");
-        html.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
+        if (!{{.DarkMode}}) {
+            html.classList.add('dark');
+        }
     </script>
-
     </head>
-<body hx-boost="true" class="bg-stone-200 dark:bg-zinc-800">
+<body id="iamgroot" hx-boost="true" class="bg-stone-200 dark:bg-zinc-800">
 <header>
     <nav class="flex items-center justify-between p-6 container mx-auto">
         <!-- logo? -->
@@ -40,20 +40,27 @@
     <h1 class='text-zinc-950 dark:text-neutral-200'>its my personal site!! running via go & htmx waddup ballers</h1>
     <div className='dark:bg-gray-800 bg-white/50 flex items-center justify-center h-screen' >
                 <!--<h1 className='dark:text-gray-100 text-gray-900 text-xl p-2'>{(isDarkTheme) ? "Make it light" : "Make it dark"}</h1>-->
-    <button hx-put="/theme"
-            id="theme-toggle" type="button" onclick="toggle_theme()"
+    <button hx-get="/theme/icon/{{.OppositeTheme}}"
+            hx-target="#iamgroot"
+            id="theme-toggle" 
+            type="button" 
+            onclick="toggle_theme({{.DarkMode}})"
             class='dark:text-gray-300 border-gray-300 text-gray-800 border-gray-500 border-2 rounded-lg text-sm p-2'>
-        {{ if .DarkMode }}
-            {{template "theme_icon_light"}}
-        {{ else }}
-            {{template "theme_icon_dark"}}
-        {{ end }}
-
+            
+            <div id="svg_container">
+            {{ if .DarkMode }}
+                {{template "theme_icon_light"}}
+            {{ else }}
+                {{template "theme_icon_dark"}}
+            {{ end }}
+            </div>
     </button>
 </div>
-</section>
-    
-</body>
 
+            <h5 class='text-zinc-950 dark:text-neutral-200'>
+        isDark: {{ .DarkMode }} <br/> opposite: {{ .OppositeTheme }}
+    </h5>
+</section>
+</body>
 </html>
 {{end}}
