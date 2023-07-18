@@ -1,11 +1,8 @@
-function toggle_theme() {
+function toggle_theme(darkMode) {
     const html = document.getElementById("root");
-    if (localStorage.getItem('theme') === 'light') {
+    if (!darkMode) {
         html.classList.add("dark");
-        localStorage.setItem('theme', 'dark');
-        //htmx.ajax('PUT', '/theme', 'theme-toggle-icon');
     } else {
         html.classList.remove("dark");
-        localStorage.setItem('theme', 'light');
     }
 }
