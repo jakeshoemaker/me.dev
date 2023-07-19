@@ -6,7 +6,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     fontFamily: {
-        'sans': ['Open Sans'],
+        body: ["JetBrains Mono"]
     },
     extend: {},
   },
