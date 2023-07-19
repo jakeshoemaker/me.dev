@@ -5,7 +5,7 @@
     <title>jake shoemaker</title>
     <meta charset="UTF-8"/>    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'> 
+    <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
     <link rel=stylesheet href="/static/styles.css"/>
     <script src="/static/htmx.min.js"></script>
     <script src="/static/theme.js"></script>
@@ -15,16 +15,15 @@
             html.classList.add('dark');
         }
     </script>
+      <style>
+      </style>
     </head>
 <body id="iamgroot" hx-boost="true" class="bg-stone-200 dark:bg-zinc-800">
 <header>
     <nav class="flex items-center justify-between p-6 container mx-auto">
-        <!-- logo? -->
-        <!-- menu -->
-        <!-- buttons -->
-        
-        <h1 class="text-xl/[28px] text-zinc-950 dark:text-neutral-200">
-            <b>$</b> jake shoemaker
+        <h1 
+            class="text-xl font-semibold text-zinc-950 dark:text-neutral-200">
+            jake shoemaker<span class="cursor"></span>
         </h1>
                 
         <div class="flex items-center">
@@ -45,7 +44,7 @@
             id="theme-toggle" 
             type="button" 
             onclick="toggle_theme({{.DarkMode}})"
-            class='dark:text-gray-300 border-gray-300 text-gray-800 border-gray-500 border-2 rounded-lg text-sm p-2'>
+            class='dark:text-gray-300 border-gray-300 text-gray-800 border-gray-500 border-2 rounded-lg text-sm p-2 animate-bounce'>
             
             <div id="svg_container">
             {{ if .DarkMode }}
