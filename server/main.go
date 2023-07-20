@@ -4,27 +4,26 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jakeshoemaker/me.dev/server/handlers"
-	"github.com/jakeshoemaker/me.dev/server/views"
+	"github.com/jakeshoemaker/me.dev/server/controllers"
+	"github.com/jakeshoemaker/me.dev/server/components"
 )
 
 const addr = ":8080"
 
 func main() { 
-    templates , err := views.GenerateTemplates()
+    templates , err := components.GenerateTemplates()
     if err != nil {
         log.Fatal(err)
     }
 
-    handler, err := handlers.CreateHandler(
-        views.NewIndexView(templates), 
-        views.NewThemeView(templates))
+    controller, err := controllers.CreateController(components.NewComponent(templates))
     if err != nil {
         log.Fatal(err)
     }
 
     log.Printf("listening on %s", addr)
-	if err := http.ListenAndServe(addr, handler); err != nil {
-		log.Fatal(err)
+	  
+  if err := http.ListenAndServe(addr, controller.Router); err != nil {
+	  	log.Fatal(err)
 	}
 }
