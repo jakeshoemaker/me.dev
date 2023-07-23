@@ -23,13 +23,18 @@
       <nav class="flex items-center justify-between p-6 container mx-auto ">
           <h1 
               class="text-xl font-bold text-zinc-950 dark:text-neutral-200">
-                 jake shoemaker<span class="cursor"></span>
+                <a href="/">jake shoemaker</a><span class="cursor"></span>
           </h1>
                   
               <div class="flex items-center p-6 mr-5 lg:mr-0">
                 <button class="py-2 px-6 bg-transparent text-zinc-950 rounded-md dark:text-neutral-200 text-lg">about me</button>
                 <button class="py-2 px-6 bg-transparent text-zinc-950 rounded-md dark:text-neutral-200 text-lg">projects</button>
-                <button class="py-2 px-6 bg-transparent text-zinc-950 rounded-md dark:text-neutral-200 text-lg">resume</button>
+                <button hx-get="/resume"
+                        hx-target="#view_in_focus"
+                        id="resume"
+                        class="py-2 px-6 bg-transparent text-zinc-950 rounded-md dark:text-neutral-200 text-lg">
+                  resume
+                </button>
                 <button hx-get="/theme/icon/{{.OppositeTheme}}"
                         hx-target="#iamgroot"
                         id="theme-toggle" 
@@ -48,12 +53,18 @@
       </nav>
   </header>
   <section>
-    <div class="dark:bg-gray-800 bg-white/50 flex items-center justify-center">
-      <h1 class='text-zinc-950 dark:text-neutral-200'>its my personal site!! running via go & htmx waddup ballers</h1>
-      <h5 class='text-zinc-950 dark:text-neutral-200'>
-        isDark: {{ .DarkMode }} <br/> opposite: {{ .OppositeTheme }}
-      </h5>
+    <div id="view_in_focus" class="bg-stone-200 dark:bg-zinc-800 flex items-center justify-center">
+      {{ if eq .ViewInFocus "index" }}
+        <h1 class='text-zinc-950 dark:text-neutral-200'>its my personal site!! running via go & htmx waddup ballers</h1>
+        <h5 class='text-zinc-950 dark:text-neutral-200'>
+          isDark: {{ .DarkMode }} <br/> opposite: {{ .OppositeTheme }}
+        </h5>
+      {{ end }}
+      {{ if eq .ViewInFocus "resume" }}
+        {{ template "resume" }}
+      {{ end }}
     </div>
+
   </section>
 </body>
 </html>
