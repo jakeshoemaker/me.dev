@@ -51,6 +51,19 @@ func CreateController(root *components.Component) (*Controller, error) {
     return controller, nil
 }
 
+func (t *Controller) projects(writer http.ResponseWriter, _ *http.Request) {
+    *t.viewInFocus = "projects"
+    data := helpers.State {
+        DarkMode: *t.darkMode,
+        OppositeTheme: *t.oppositeTheme,
+        ViewInFocus: *t.viewInFocus,    
+    }
+    
+    if err := t.root.Templ.ExecuteTemplate(writer, "resume", data); err != nil {
+        http.Error(writer, err.Error(), http.StatusInternalServerError)
+    }
+}
+
 func (t *Controller) resume(writer http.ResponseWriter, _ *http.Request) {
     *t.viewInFocus = "resume"
     data := helpers.State {
