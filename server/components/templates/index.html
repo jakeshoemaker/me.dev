@@ -5,7 +5,6 @@
     <title>jake shoemaker</title>
     <meta charset="UTF-8"/>    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet">
     <link rel=stylesheet href="/static/styles.css"/>
     <script src="/static/htmx.min.js"></script>
@@ -46,19 +45,17 @@
                         {{ if .DarkMode }}
                             {{template "theme_icon_light"}}
                         {{ else }}
-                            {{template "theme_icon_dark"}}
+                            {{template "theme_icon_dark"}}                       
                         {{ end }}
                         </div>
                 </button>
           </div>
       </nav>
   </header>
+
     <div id="view_in_focus" class="bg-stone-200 dark:bg-zinc-800 flex items-center justify-center">
       {{ if eq .ViewInFocus "index" }}
-      <article class="prose prose-zinc !dark:prose-neutral">
-        <h1> jake shoemaker</h1>
-        <p> software engineer </p>
-      </article>
+        {{ template "main_greeting"}}
       {{ end }}
       {{ if eq .ViewInFocus "resume" }}
         {{ template "resume" }}

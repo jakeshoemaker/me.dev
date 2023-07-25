@@ -438,18 +438,8 @@ html {
   font-family: "JetBrains Mono"
 }
 
-@keyframes cursor {
-  0% {
-    opacity:0
-  }
-
-  50% {
-    opacity:1
-  }
-
-  100% {
-    opacity:0
-  }
+h1 {
+  font-size: "text-5xl"
 }
 
 *, ::before, ::after {
