@@ -1,61 +1,52 @@
 {{define "index"}}
 <!DOCTYPE html>
-<html lang="en" id="root" class="dark">
+<html lang="en" id="root" data-theme="dark">
 <head>
-    <title>jake shoemaker</title>
-    <meta charset="UTF-8"/>    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet">
-    <link rel=stylesheet href="/static/styles.css"/>
-    <script src="/static/htmx.min.js"></script>
-    <script src="/static/theme.js"></script>
-    <script>
-        const html = document.getElementById("root");
-        if (!{{.DarkMode}}) {
-            html.classList.add('dark');
-        }
-    </script>
-      <style>
-      </style>
-    </head>
-<body id="iamgroot" hx-boost="true" class="bg-stone-200 dark:bg-zinc-800">
-  <header class="bg-stone-250 dark:bg-zinc-750">
-      <nav class="flex items-center justify-between p-6 container mx-auto ">
-          <h1 
-              class="text-xl font-bold text-zinc-950 dark:text-neutral-200">
-                <a href="/">jake shoemaker</a><span class="cursor"></span>
-          </h1>
-                  
-              <div class="flex items-center p-6 mr-5 lg:mr-0">
-                <button class="py-2 px-6 bg-transparent text-zinc-950 rounded-md dark:text-neutral-200 text-lg">about me</button>
-                <button class="py-2 px-6 bg-transparent text-zinc-950 rounded-md dark:text-neutral-200 text-lg">projects</button>
-                <button hx-get="/resume"
-                        hx-target="#view_in_focus"
-                        id="resume"
-                        class="py-2 px-6 bg-transparent text-zinc-950 rounded-md dark:text-neutral-200 text-lg">
-                  resume
-                </button>
-                <button hx-get="/theme/icon/{{.OppositeTheme}}"
-                        hx-target="#iamgroot"
-                        id="theme-toggle" 
-                        type="button" 
-                        onclick="toggle_theme({{.DarkMode}})"
-                        class='py-2 px-6 bg-transparent rounded-md text-lg '>
-                        <div id="svg_container">
-                        {{ if .DarkMode }}
-                            {{template "theme_icon_light"}}
-                        {{ else }}
-                            {{template "theme_icon_dark"}}                       
-                        {{ end }}
-                        </div>
-                </button>
+  <title>jake shoemaker</title>
+  <meta charset="UTF-8"/>    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet">
+  <link rel=stylesheet href="/static/styles.css"/>
+  <script src="/static/htmx.min.js"></script>
+</head>
+<body id="iamgroot" hx-boost="true">
+  <header>
+    <div class="flex p-8">
+      <nav class="navbar bg-base-300 rounded-box p-5">
+        <div class="flex-1 px-2 lg:flex-none">
+          <a class="text-lg font-bold" href="/">jake shoemaker</a>
+        </div>
+        <div class="flex justify-end flex-1 p-2">
+          <div class="flex items-stretch">
+            <a class="btn btn-ghost rounded-btn mr-1">about me</a>
+            <a class="btn btn-ghost rounded-btn mr-1">projects</a>
+            <a hx-get="/resume"
+               hx-target="#view_in_focus"
+               id="resume"
+               class="btn btn-ghost rounded-btn mr-1">resume</a>
+          <div id="theme-toggle" 
+               type="button" 
+               onclick="toggle_theme({{.DarkMode}})"
+               class="dropdown dropdown-end">
+               <label tabindex="0" class="btn btn-ghost rounded-btn">theme</label>
+                <ul hx-get="/theme/"
+                   hx-target="#iamgroot"
+                   onclick="swap_theme()"
+                   id="themes" tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                <li value="light"><a>light</a></li>
+                <li id="dark"><a>dark</a></li>
+                <li id="forest"><a>forest</a></li>
+                <li id="aqua"><a>aqua</a></li>
+                <li id="lofi"><a>lofi</a><li>
+               </ul>
           </div>
+        </div>
       </nav>
+    </div>
   </header>
-
-    <div id="view_in_focus" class="bg-stone-200 dark:bg-zinc-800 flex items-center justify-center">
+    <div id="view_in_focus" class="flex items-center justify-center">
       {{ if eq .ViewInFocus "index" }}
-        {{ template "main_greeting"}}
+        {{ template "main_greeting" }}
       {{ end }}
       {{ if eq .ViewInFocus "resume" }}
         {{ template "resume" }}
