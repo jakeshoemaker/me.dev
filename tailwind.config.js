@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-      './server/views/templates/*{.html,js}',
+      './server/components/templates/*.html',
   ],
-  darkMode: 'class',
+  daisyui: {
+    themes: ["light", "dark", "cupcake"],
+  },
   theme: {
     fontFamily: {
         body: ["JetBrains Mono"]
@@ -11,6 +13,6 @@ module.exports = {
     extend: {
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
 }
 
