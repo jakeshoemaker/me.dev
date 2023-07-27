@@ -4,7 +4,7 @@ module.exports = {
       './server/components/templates/*.html',
   ],
   daisyui: {
-    themes: ["light", "dark", "cupcake"],
+    themes: ["light", "dark", "night", "dracula", "acid"],
   },
   theme: {
     fontFamily: {

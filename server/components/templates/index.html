@@ -1,6 +1,6 @@
 {{define "index"}}
 <!DOCTYPE html>
-<html lang="en" id="root" data-theme="dark">
+<html lang="en" id="notroot" data-theme="dark">
 <head>
   <title>jake shoemaker</title>
   <meta charset="UTF-8"/>    
@@ -8,8 +8,15 @@
   <link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet">
   <link rel=stylesheet href="/static/styles.css"/>
   <script src="/static/htmx.min.js"></script>
+  <script src="https://unpkg.com/hyperscript.org@0.9.9"></script>
+  <script type="text/hyperscript">
+    def theme.set()
+      remove #notroot@data-theme then
+      set #notroot@data-theme to $theme
+    end
+  </script>
 </head>
-<body id="iamgroot" hx-boost="true">
+<body id="iamgroot" hx-boost="true" >
   <header>
     <div class="flex p-8">
       <nav class="navbar bg-base-300 rounded-box p-5">
@@ -26,32 +33,31 @@
                class="btn btn-ghost rounded-btn mr-1">resume</a>
           <div id="theme-toggle" 
                type="button" 
-               onclick="toggle_theme({{.DarkMode}})"
                class="dropdown dropdown-end">
                <label tabindex="0" class="btn btn-ghost rounded-btn">theme</label>
-                <ul hx-get="/theme/"
-                   hx-target="#iamgroot"
-                   onclick="swap_theme()"
+                <ul _="on click log target.id then set $theme to target.id then call theme.set()"
                    id="themes" tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-                <li value="light"><a>light</a></li>
-                <li id="dark"><a>dark</a></li>
-                <li id="forest"><a>forest</a></li>
-                <li id="aqua"><a>aqua</a></li>
-                <li id="lofi"><a>lofi</a><li>
+                <li><a id="light">light</a></li>
+                <li><a id="dark">dark</a></li>
+                <li><a id="night">night</a></li>
+                <li><a id="dracula">dracula</a></li>
+                <li><a id="acid">acid</a><li>
                </ul>
           </div>
         </div>
       </nav>
     </div>
   </header>
-    <div id="view_in_focus" class="flex items-center justify-center">
-      {{ if eq .ViewInFocus "index" }}
-        {{ template "main_greeting" }}
-      {{ end }}
-      {{ if eq .ViewInFocus "resume" }}
-        {{ template "resume" }}
-      {{ end }}   
+  <div id="view_in_focus" class="flex items-center justify-center overflow-hidden">
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">jake shoemaker</h1>
+          <p class="py-6">software engineer.</p>
+        </div>
+      </div>
     </div>
+  </div>
 </body>
 </html>
 {{end}}
