@@ -21,8 +21,7 @@ var (
 type Controller struct {
     Router http.Handler
     root *components.Component
-    darkMode *bool
-    oppositeTheme *string
+    theme *string
     viewInFocus *string
 }
 
@@ -32,9 +31,8 @@ func CreateController(root *components.Component) (*Controller, error) {
     controller := &Controller {
         Router: router,
         root: root,
-        darkMode: helpers.Of(true),
-        oppositeTheme: helpers.Of("light"),
-        viewInFocus: helpers.Of("index"),
+        theme: helpers.Of("dark"),
+        viewInFocus: helpers.Of("main_greeting"),
     }
 
     static_handler, err := create_static_handler()
@@ -43,8 +41,7 @@ func CreateController(root *components.Component) (*Controller, error) {
     }
 
     router.HandleFunc("/", controller.get_index).Methods(http.MethodGet)
-    router.HandleFunc("/theme/icon/light", controller.put_light_theme_icon).Methods(http.MethodGet)
-    router.HandleFunc("/theme/icon/dark", controller.put_dark_theme_icon).Methods(http.MethodGet)
+    router.HandleFunc("/themes/{theme}", controller.set_theme).Methods(http.MethodGet)
     router.HandleFunc("/resume", controller.resume).Methods(http.MethodGet)
 	  router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", static_handler))
 
@@ -54,8 +51,7 @@ func CreateController(root *components.Component) (*Controller, error) {
 func (t *Controller) projects(writer http.ResponseWriter, _ *http.Request) {
     *t.viewInFocus = "projects"
     data := helpers.State {
-        DarkMode: *t.darkMode,
-        OppositeTheme: *t.oppositeTheme,
+        Theme: *t.theme,
         ViewInFocus: *t.viewInFocus,    
     }
     
@@ -67,8 +63,7 @@ func (t *Controller) projects(writer http.ResponseWriter, _ *http.Request) {
 func (t *Controller) resume(writer http.ResponseWriter, _ *http.Request) {
     *t.viewInFocus = "resume"
     data := helpers.State {
-        DarkMode: *t.darkMode,
-        OppositeTheme: *t.oppositeTheme,
+        Theme: *t.theme,
         ViewInFocus: "resume",    
     }
 
@@ -79,10 +74,9 @@ func (t *Controller) resume(writer http.ResponseWriter, _ *http.Request) {
 }
 
 func (t *Controller) get_index(writer http.ResponseWriter, _ *http.Request) {
-    *t.viewInFocus = "index"
+    *t.viewInFocus = "main_greeting"
     data := helpers.State {
-        DarkMode: *t.darkMode,
-        OppositeTheme: *t.oppositeTheme,
+        Theme: *t.theme,
         ViewInFocus: *t.viewInFocus,
     }
     
@@ -91,26 +85,11 @@ func (t *Controller) get_index(writer http.ResponseWriter, _ *http.Request) {
     }
 }
 
-func (t *Controller) put_dark_theme_icon(writer http.ResponseWriter, _ *http.Request) {
-    *t.darkMode = true
-    *t.oppositeTheme = "light"
+func (t *Controller) set_theme(writer http.ResponseWriter, req *http.Request) {
+    vars :=mux.Vars(req)
+    *t.theme = vars["themes"]
     data := helpers.State {
-        DarkMode: true,
-        OppositeTheme: "light",
-        ViewInFocus: *t.viewInFocus,
-    }
-    if err := t.root.Templ.ExecuteTemplate(writer, "index", data); err != nil {
-        http.Error(writer, err.Error(), http.StatusInternalServerError)
-    }
-
-}
-
-func (t *Controller) put_light_theme_icon(writer http.ResponseWriter, _ *http.Request) {
-    *t.darkMode = false
-    *t.oppositeTheme = "dark"
-    data := helpers.State {
-        DarkMode: false,
-        OppositeTheme: "dark",
+        Theme: *t.theme,
         ViewInFocus: *t.viewInFocus,
     }
     if err := t.root.Templ.ExecuteTemplate(writer, "index", data); err != nil {

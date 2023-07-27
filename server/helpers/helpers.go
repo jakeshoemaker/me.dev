@@ -5,7 +5,6 @@ func Of[Value any](v Value) *Value {
 }
 
 type State struct {
-    DarkMode bool
-    OppositeTheme string
+    Theme string
     ViewInFocus string
 }
