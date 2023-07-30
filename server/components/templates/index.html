@@ -16,48 +16,53 @@
     end
   </script>
 </head>
-<body id="iamgroot" hx-boost="true" >
-  <header>
-    <div class="flex p-8">
-      <nav class="navbar bg-base-300 rounded-box p-5">
-        <div class="flex-1 px-2 lg:flex-none">
-          <a class="text-lg font-bold" href="/">jake shoemaker</a>
-        </div>
-        <div class="flex justify-end flex-1 p-2">
-          <div class="flex items-stretch">
-            <a class="btn btn-ghost rounded-btn mr-1">about me</a>
-            <a class="btn btn-ghost rounded-btn mr-1">projects</a>
-            <a hx-get="/resume"
-               hx-target="#view_in_focus"
-               id="resume"
-               class="btn btn-ghost rounded-btn mr-1">resume</a>
-          <div id="theme-toggle" 
-               type="button" 
-               class="dropdown dropdown-end">
-               <label tabindex="0" class="btn btn-ghost rounded-btn">theme</label>
-                <ul _="on click log target.id then set $theme to target.id then call theme.set()"
-                   id="themes" tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-                <li><a id="light">light</a></li>
-                <li><a id="dark">dark</a></li>
-                <li><a id="night">night</a></li>
-                <li><a id="dracula">dracula</a></li>
-                <li><a id="acid">acid</a><li>
-               </ul>
+<body id="iamgroot" hx-boost="true">
+    <header class="absolute inset-x-0 top-0 z-50">
+      <div class="flex p-8">
+        <nav class="navbar bg-base-300 rounded-box p-5">
+          <div class="flex-1 px-2 lg:flex-none">
+            <a class="text-lg font-bold" href="/">jake shoemaker</a>
+          </div>
+          <div class="flex justify-end flex-1 p-2">
+            <div class="flex items-stretch">
+              <a class="btn btn-ghost rounded-btn mr-1">about me</a>
+              <a class="btn btn-ghost rounded-btn mr-1">projects</a>
+              <a hx-get="/resume"
+                 hx-target="#view_in_focus"
+                 id="resume"
+                 class="btn btn-ghost rounded-btn mr-1">resume</a>
+            <div id="theme-toggle" 
+                 type="button" 
+                 class="dropdown dropdown-end">
+                 <label tabindex="0" class="btn btn-ghost rounded-btn">theme</label>
+                  <ul _="on click log target.id then set $theme to target.id then call theme.set()"
+                     id="themes" tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                  <li><a id="light">light</a></li>
+                  <li><a id="dark">dark</a></li>
+                  <li><a id="night">night</a></li>
+                  <li><a id="dracula">dracula</a></li>
+                  <li><a id="acid">acid</a><li>
+                  <li><a id="soft-lite">pillow</a><li>
+                 </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="">
+      <div class="relative isolate flex items-center justify-center">
+        <div class="hero min-h-screen bg-base-200">
+          <div class="hero-content text-center">
+            <div class="max-w-md">
+              <div id="view_in_focus">
+                <h1 class="text-5xl font-bold">jake shoemaker</h1>
+                <p class="py-6">software engineer.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
-    </div>
-  </header>
-  <div id="view_in_focus" class="flex items-center justify-center overflow-hidden">
-    <div class="hero min-h-screen bg-base-200">
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <h1 class="text-5xl font-bold">jake shoemaker</h1>
-          <p class="py-6">software engineer.</p>
-        </div>
       </div>
-    </div>
-  </div>
+    </main>
 </body>
 </html>
 {{end}}

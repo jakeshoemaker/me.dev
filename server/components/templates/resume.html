@@ -1,6 +1,19 @@
 {{ define "resume" }}
-<div id="resume_container">
-  <h3 class="text-xl text-zinc-950 dark:text-neutral-200"> current resume </h3>
-  <img src="/static/jshoemaker_resume_2023_07-1.svg" alt="resume"/>
+<div id="resume_container" class="object-scale-down">
+  <h1 class="p-6"> current resume 
+      <a href="/static/jshoemaker_resume_2023_07.pdf" target="_blank">
+        <div class="btn btn-primary">view cv</div>
+      </a>
+  </h1>
+  <!--<img src="/static/jshoemaker_resume_2023_07-1.svg" alt="resume"/>-->
+<div class="card w-96 bg-primary text-primary-content">
+  <div class="card-body">
+    <h2 class="card-title">Software Engineer I</h2>
+    <h4>Black Knight Financial Services</h4>
+    <div class="card-actions justify-end">
+        Backend development on our API team using <bold>c#, dotnet, and mssql</bold>
+    </div>
+  </div>
+</div>
 </div>
 {{ end }}
