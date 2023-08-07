@@ -7,4 +7,13 @@ func Of[Value any](v Value) *Value {
 type State struct {
     Theme string
     ViewInFocus string
+    Jobs []Job
 }
+
+type Job struct {
+    JobTitle string
+    Company string
+    TimeLine string
+    JobSkills []string
+} 
+

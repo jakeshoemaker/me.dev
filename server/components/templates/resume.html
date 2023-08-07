@@ -5,15 +5,28 @@
         <div class="btn btn-primary">view cv</div>
       </a>
   </h1>
-  <!--<img src="/static/jshoemaker_resume_2023_07-1.svg" alt="resume"/>-->
-<div class="card w-96 bg-primary text-primary-content">
-  <div class="card-body">
-    <h2 class="card-title">Software Engineer I</h2>
-    <h4>Black Knight Financial Services</h4>
-    <div class="card-actions justify-end">
-        Backend development on our API team using <bold>c#, dotnet, and mssql</bold>
-    </div>
-  </div>
-</div>
+
+  <ul>
+  {{ range .Jobs }}
+    <li>
+      <div class="card w-96 bg-primary text-primary-content my-2">
+        <div class="card-body">
+        <h2 class="card-title"> {{ .JobTitle }}</h2>
+        <h4> {{ .Company }}</h4>
+        <h4> {{ .TimeLine }}</h4>
+          <div class="card-actions justify-end ">
+            <ul>
+              {{ range .JobSkills }}
+                <li> {{ . }} </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </div>
+    <li>
+  {{ end }}
+  </ul>
 </div>
 {{ end }}
+
+

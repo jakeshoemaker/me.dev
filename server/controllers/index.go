@@ -48,26 +48,41 @@ func CreateController(root *components.Component) (*Controller, error) {
     return controller, nil
 }
 
+
+
 func (t *Controller) projects(writer http.ResponseWriter, _ *http.Request) {
     *t.viewInFocus = "projects"
     data := helpers.State {
         Theme: *t.theme,
-        ViewInFocus: *t.viewInFocus,    
+        ViewInFocus: *t.viewInFocus,
     }
     
-    if err := t.root.Templ.ExecuteTemplate(writer, "resume", data); err != nil {
+    if err := t.root.Templ.ExecuteTemplate(writer, "projects", data); err != nil {
         http.Error(writer, err.Error(), http.StatusInternalServerError)
     }
 }
 
 func (t *Controller) resume(writer http.ResponseWriter, _ *http.Request) {
     *t.viewInFocus = "resume"
-    data := helpers.State {
-        Theme: *t.theme,
-        ViewInFocus: "resume",    
+    curr_job := helpers.Job {
+        JobTitle: "Software Engineer I",
+        Company: "Black Knight Financial Services",
+        TimeLine: "May 2021 - Present",
+        JobSkills: []string{"C#", ".NET", "SQL", "API development", "Docker"},
     }
 
-
+    next_job := helpers.Job {
+        JobTitle: "Software Engineer II",
+        Company: "Cloudflare",
+        TimeLine: "Soon - Future",
+        JobSkills: []string{"Golang", "Rust", "HTMX", "Linux", "Docker"},
+    }
+    jobs := []helpers.Job{curr_job, next_job}
+    data := helpers.State {
+        Theme: *t.theme,
+        ViewInFocus: *t.viewInFocus,
+        Jobs: jobs,
+    }
     if err := t.root.Templ.ExecuteTemplate(writer, "resume", data); err != nil {
         http.Error(writer, err.Error(), http.StatusInternalServerError)
     }
