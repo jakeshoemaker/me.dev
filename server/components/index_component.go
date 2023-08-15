@@ -5,9 +5,9 @@ import (
 )
 
 type IndexComponent struct {
-    Templ *template.Template
+	Templ *template.Template
 }
 
 func NewIndexView(templ *template.Template) *IndexComponent {
-    return &IndexComponent{Templ: templ}
+	return &IndexComponent{Templ: templ}
 }
