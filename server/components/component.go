@@ -5,9 +5,9 @@ import (
 )
 
 type Component struct {
-    Templ *template.Template
+	Templ *template.Template
 }
 
 func NewComponent(templ *template.Template) *Component {
-    return &Component{Templ: templ}
+	return &Component{Templ: templ}
 }

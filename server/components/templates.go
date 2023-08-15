@@ -1,15 +1,15 @@
-package components 
+package components
 
 import (
-    "embed"
-    "html/template"
+	"embed"
+	"html/template"
 )
 
 var (
-    //go:embed "templates/*"
-    templates embed.FS
+	//go:embed "templates/*"
+	templates embed.FS
 )
 
 func GenerateTemplates() (*template.Template, error) {
-    return template.ParseFS(templates, "templates/*.html")
+	return template.ParseFS(templates, "templates/*.html")
 }
