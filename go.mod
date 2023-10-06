@@ -3,6 +3,7 @@ module github.com/jakeshoemaker/me.dev
 go 1.20
 
 require (
+	github.com/a-h/templ v0.2.364
 	github.com/gorilla/mux v1.8.0
 	github.com/libsql/libsql-client-go v0.0.0-20230804202111-eeb7070ee77f
 	github.com/spf13/viper v1.16.0
