@@ -10,6 +10,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/jakeshoemaker/me.dev/server/components"
 	"github.com/jakeshoemaker/me.dev/server/helpers"
+
+	"github.com/jakeshoemaker/me.dev/server/templates"
 )
 
 var (
@@ -95,6 +97,7 @@ func (t *Controller) get_index(writer http.ResponseWriter, _ *http.Request) {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 	}
 }
+
 
 func (t *Controller) set_theme(writer http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
