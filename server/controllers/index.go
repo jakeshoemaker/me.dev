@@ -10,6 +10,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/jakeshoemaker/me.dev/server/components"
 	"github.com/jakeshoemaker/me.dev/server/helpers"
+
 	"github.com/jakeshoemaker/me.dev/server/templates"
 )
 
@@ -97,15 +98,6 @@ func (t *Controller) get_index(writer http.ResponseWriter, _ *http.Request) {
 	}
 }
 
-func (t *Controller) get_name(writer http.ResponseWriter, _ *http.Request) {
-	*t.viewInFocus = "name"
-	data := helpers.State{
-		Theme:       *t.theme,
-		ViewInFocus: *t.viewInFocus,
-	}
-
-	component := Hello("jake")
-}
 
 func (t *Controller) set_theme(writer http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
