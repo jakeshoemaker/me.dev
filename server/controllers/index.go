@@ -6,12 +6,9 @@ import (
 	"io/fs"
 	"net/http"
 
-	//"github.com/google/uuid"
 	"github.com/gorilla/mux"
 	"github.com/jakeshoemaker/me.dev/server/components"
 	"github.com/jakeshoemaker/me.dev/server/helpers"
-
-	"github.com/jakeshoemaker/me.dev/server/templates"
 )
 
 var (
@@ -65,15 +62,15 @@ func (t *Controller) resume(writer http.ResponseWriter, _ *http.Request) {
 	curr_job := helpers.Job{
 		JobTitle:  "Software Engineer I",
 		Company:   "Black Knight Financial Services",
-		TimeLine:  "May 2021 - Present",
+		TimeLine:  "May 2021 - October 2023",
 		JobSkills: []string{"C#", ".NET", "SQL", "API development", "Docker"},
 	}
 
 	next_job := helpers.Job{
-		JobTitle:  "Software Engineer II",
-		Company:   "Cloudflare",
-		TimeLine:  "Soon - Future",
-		JobSkills: []string{"Golang", "Rust", "HTMX", "Linux", "Docker"},
+		JobTitle:  "Internal Application Developer",
+		Company:   "2Barrels",
+		TimeLine:  "October 2023 - Present",
+		JobSkills: []string{"Golang", "Python", "LLM's", "Linux", "Docker", "Open Source"},
 	}
 	jobs := []helpers.Job{curr_job, next_job}
 	data := helpers.State{
@@ -97,7 +94,6 @@ func (t *Controller) get_index(writer http.ResponseWriter, _ *http.Request) {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 	}
 }
-
 
 func (t *Controller) set_theme(writer http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
