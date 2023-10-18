@@ -26,3 +26,5 @@ bin/
 
 # obviously :)
 .env
+run.txt
+

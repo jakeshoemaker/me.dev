@@ -6,11 +6,9 @@ import (
 	"io/fs"
 	"net/http"
 
-	//"github.com/google/uuid"
 	"github.com/gorilla/mux"
 	"github.com/jakeshoemaker/me.dev/server/components"
 	"github.com/jakeshoemaker/me.dev/server/helpers"
-	//"github.com/jakeshoemaker/me.dev/server/templates"
 )
 
 var (
